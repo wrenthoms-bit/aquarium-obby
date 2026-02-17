@@ -166,39 +166,91 @@
         dirLight.shadow.mapSize.height = 2048;
         scene.add(dirLight);
 
-        const playerLight = new THREE.PointLight(0xff00ff, 0.8, 20);
+        const playerLight = new THREE.PointLight(0xffaa00, 0.8, 20); // Orange glow for Steve
         scene.add(playerLight);
 
-        // --- Player Setup ---
+        // --- Player Setup (Steve Fish Avatar) ---
         const player = new THREE.Group();
 
-        // Bell
-        const bellGeo = new THREE.SphereGeometry(0.6, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2);
-        const bellMat = new THREE.MeshStandardMaterial({ 
-            color: 0xff66cc, roughness: 0.1, metalness: 0.1, transparent: true, opacity: 0.7, emissive: 0x440044, emissiveIntensity: 0.2
+        // 1. Body (Orange Round Shape)
+        const bodyGeo = new THREE.SphereGeometry(0.5, 32, 32);
+        const bodyMat = new THREE.MeshStandardMaterial({ 
+            color: 0xff8c00, // Dark Orange
+            roughness: 0.4,
+            metalness: 0.1
         });
-        const bell = new THREE.Mesh(bellGeo, bellMat);
-        player.add(bell);
+        const body = new THREE.Mesh(bodyGeo, bodyMat);
+        // Scale to make it slightly fish-shaped (longer)
+        body.scale.set(1, 0.9, 1.2); 
+        player.add(body);
 
-        // Tentacles
-        const tentacleGeo = new THREE.CylinderGeometry(0.04, 0.02, 0.8, 8);
-        const tentacleMat = new THREE.MeshStandardMaterial({ color: 0xffccff, transparent: true, opacity: 0.8 });
-        for(let i = 0; i < 5; i++) {
-            const t = new THREE.Mesh(tentacleGeo, tentacleMat);
-            const angle = (i / 5) * Math.PI * 2;
-            t.position.set(Math.sin(angle) * 0.3, -0.4, Math.cos(angle) * 0.3);
-            player.add(t);
-        }
+        // 2. Tail
+        const tailGeo = new THREE.ConeGeometry(0.3, 0.6, 16);
+        const tailMat = new THREE.MeshStandardMaterial({ color: 0xff8c00 });
+        const tail = new THREE.Mesh(tailGeo, tailMat);
+        tail.rotation.x = -Math.PI / 2; // Point backwards
+        tail.position.z = -0.6;
+        player.add(tail);
 
-        // Eyes
-        const eyeGeo = new THREE.SphereGeometry(0.12, 16, 16);
+        // 3. Eyes (Big and Goofy)
+        const eyeGeo = new THREE.SphereGeometry(0.18, 16, 16);
         const eyeMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+        const pupilGeo = new THREE.SphereGeometry(0.08, 16, 16);
         const pupilMat = new THREE.MeshBasicMaterial({ color: 0x000000 });
-        const leftEye = new THREE.Mesh(eyeGeo, eyeMat); leftEye.position.set(0.2, 0.2, 0.45);
-        const leftPupil = new THREE.Mesh(new THREE.SphereGeometry(0.05), pupilMat); leftPupil.position.set(0.22, 0.2, 0.54);
-        const rightEye = new THREE.Mesh(eyeGeo, eyeMat); rightEye.position.set(-0.2, 0.2, 0.45);
-        const rightPupil = new THREE.Mesh(new THREE.SphereGeometry(0.05), pupilMat); rightPupil.position.set(-0.22, 0.2, 0.54);
+
+        // Left Eye
+        const leftEye = new THREE.Mesh(eyeGeo, eyeMat);
+        leftEye.position.set(0.25, 0.1, 0.35);
+        const leftPupil = new THREE.Mesh(pupilGeo, pupilMat);
+        leftPupil.position.set(0.28, 0.1, 0.48);
+
+        // Right Eye
+        const rightEye = new THREE.Mesh(eyeGeo, eyeMat);
+        rightEye.position.set(-0.25, 0.1, 0.35);
+        const rightPupil = new THREE.Mesh(pupilGeo, pupilMat);
+        rightPupil.position.set(-0.28, 0.1, 0.48);
+
         player.add(leftEye, rightEye, leftPupil, rightPupil);
+
+        // 4. Mouth (Frown)
+        const mouthGeo = new THREE.TorusGeometry(0.1, 0.03, 8, 16, Math.PI); // Half circle
+        const mouthMat = new THREE.MeshBasicMaterial({ color: 0x000000 });
+        const mouth = new THREE.Mesh(mouthGeo, mouthMat);
+        mouth.rotation.z = Math.PI ; // Frown
+        mouth.position.set(0, -0.15, 0.45);
+        player.add(mouth);
+
+        // 5. Legs (It's a walking fish!)
+        const legGeo = new THREE.CylinderGeometry(0.06, 0.06, 0.5, 8);
+        const legMat = new THREE.MeshStandardMaterial({ color: 0xffaa00 }); 
+        
+        const leftLeg = new THREE.Mesh(legGeo, legMat);
+        leftLeg.position.set(0.15, -0.6, 0);
+        
+        const rightLeg = new THREE.Mesh(legGeo, legMat);
+        rightLeg.position.set(-0.15, -0.6, 0);
+
+        // Feet
+        const footGeo = new THREE.BoxGeometry(0.15, 0.05, 0.25);
+        const leftFoot = new THREE.Mesh(footGeo, legMat);
+        leftFoot.position.set(0.15, -0.85, 0.05);
+
+        const rightFoot = new THREE.Mesh(footGeo, legMat);
+        rightFoot.position.set(-0.15, -0.85, 0.05);
+
+        player.add(leftLeg, rightLeg, leftFoot, rightFoot);
+
+        // 6. Arms
+        const armGeo = new THREE.CylinderGeometry(0.05, 0.05, 0.4, 8);
+        const leftArm = new THREE.Mesh(armGeo, legMat);
+        leftArm.position.set(0.5, -0.1, 0);
+        leftArm.rotation.z = -Math.PI / 4; // Angle out
+
+        const rightArm = new THREE.Mesh(armGeo, legMat);
+        rightArm.position.set(-0.5, -0.1, 0);
+        rightArm.rotation.z = Math.PI / 4;
+
+        player.add(leftArm, rightArm);
 
         player.traverse(obj => { if (obj.isMesh) obj.castShadow = true; });
         scene.add(player);
