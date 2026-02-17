@@ -108,7 +108,7 @@
 <body>
 
     <div id="ui-layer">
-        <h1>Aquatic Fire Obby</h1>
+        <h1>Steve The Fish</h1>
         <div class="stat-box">
             <div>Stage: <span id="stage-display">1</span></div>
             <div>Coins: <span id="coin-display">0</span></div>
