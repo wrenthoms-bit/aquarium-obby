@@ -1,1 +1,673 @@
-<html><head><meta content="text/html; charset=UTF-8" http-equiv="content-type"><style type="text/css">ol{margin:0;padding:0}table td,table th{padding:0}.c1{color:#000000;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:11pt;font-family:"Arial";font-style:normal}.c0{padding-top:0pt;padding-bottom:0pt;line-height:1.15;orphans:2;widows:2;text-align:left}.c3{background-color:#ffffff;max-width:451.4pt;padding:72pt 72pt 72pt 72pt}.c2{height:11pt}.title{padding-top:0pt;color:#000000;font-size:26pt;padding-bottom:3pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}.subtitle{padding-top:0pt;color:#666666;font-size:15pt;padding-bottom:16pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}li{color:#000000;font-size:11pt;font-family:"Arial"}p{margin:0;color:#000000;font-size:11pt;font-family:"Arial"}h1{padding-top:20pt;color:#000000;font-size:20pt;padding-bottom:6pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h2{padding-top:18pt;color:#000000;font-size:16pt;padding-bottom:6pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h3{padding-top:16pt;color:#434343;font-size:14pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h4{padding-top:14pt;color:#666666;font-size:12pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h5{padding-top:12pt;color:#666666;font-size:11pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h6{padding-top:12pt;color:#666666;font-size:11pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;font-style:italic;orphans:2;widows:2;text-align:left}</style></head><body class="c3 doc-content"><p class="c0"><span class="c1">&lt;!DOCTYPE html&gt;</span></p><p class="c0"><span class="c1">&lt;html lang=&quot;en&quot;&gt;</span></p><p class="c0"><span class="c1">&lt;head&gt;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &lt;meta charset=&quot;UTF-8&quot;&gt;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;&gt;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &lt;title&gt;Aquatic Fire Obby - Prototype&lt;/title&gt;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js&quot;&gt;&lt;/script&gt;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &lt;style&gt;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; body { margin: 0; overflow: hidden; background-color: #001133; font-family: &#39;Segoe UI&#39;, Tahoma, Geneva, Verdana, sans-serif; touch-action: none; user-select: none; -webkit-user-select: none; }</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; #ui-layer {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; position: absolute;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; top: 20px;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; left: 20px;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; color: white;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pointer-events: none;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; text-shadow: 2px 2px 4px #000000;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; z-index: 10;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; h1 { margin: 0; font-size: 24px; color: #00eeff; }</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; .stat-box {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; background: rgba(0, 0, 0, 0.5);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; padding: 10px;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; border-radius: 8px;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; margin-top: 10px;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; border: 1px solid #005577;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; #controls-hint {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; position: absolute;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; bottom: 20px;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; width: 100%;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; text-align: center;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; color: rgba(255, 255, 255, 0.7);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; font-size: 14px;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pointer-events: none;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; #death-screen {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; position: absolute;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; top: 0; left: 0; width: 100%; height: 100%;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; background: rgba(100, 0, 0, 0.5);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; display: none;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; justify-content: center;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; align-items: center;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; color: white;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; font-size: 40px;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; font-weight: bold;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pointer-events: none;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; z-index: 20;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; /* --- Touch Controls --- */</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; #joystick-zone {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; position: absolute;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; bottom: 40px;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; left: 40px;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; width: 120px;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; height: 120px;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; background: rgba(255, 255, 255, 0.1);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; border: 2px solid rgba(255, 255, 255, 0.2);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; border-radius: 50%;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; touch-action: none;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; display: none; /* Hidden on desktop by default */</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; z-index: 15;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; #joystick-knob {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; position: absolute;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; top: 50%;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; left: 50%;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; width: 50px;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; height: 50px;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; background: rgba(0, 238, 255, 0.6);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; border-radius: 50%;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform: translate(-50%, -50%);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pointer-events: none;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; box-shadow: 0 0 10px rgba(0, 238, 255, 0.5);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; #jump-button {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; position: absolute;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; bottom: 50px;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; right: 50px;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; width: 90px;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; height: 90px;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; background: rgba(255, 68, 68, 0.5);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; border: 2px solid rgba(255, 255, 255, 0.2);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; border-radius: 50%;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; color: white;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; display: none; /* Hidden on desktop by default */</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; justify-content: center;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; align-items: center;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; font-weight: bold;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; font-size: 18px;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; user-select: none;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; touch-action: none;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; z-index: 15;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; box-shadow: 0 0 10px rgba(255, 68, 68, 0.5);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; #jump-button:active {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; background: rgba(255, 68, 68, 0.8);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform: scale(0.95);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; /* Show controls on touch devices */</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; @media (pointer: coarse) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; #joystick-zone, #jump-button { display: flex; }</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; #controls-hint { display: none; }</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &lt;/style&gt;</span></p><p class="c0"><span class="c1">&lt;/head&gt;</span></p><p class="c0"><span class="c1">&lt;body&gt;</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &lt;div id=&quot;ui-layer&quot;&gt;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &lt;h1&gt;Aquatic Fire Obby&lt;/h1&gt;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class=&quot;stat-box&quot;&gt;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;div&gt;Stage: &lt;span id=&quot;stage-display&quot;&gt;1&lt;/span&gt;&lt;/div&gt;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;div&gt;Coins: &lt;span id=&quot;coin-display&quot;&gt;0&lt;/span&gt;&lt;/div&gt;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &lt;/div&gt;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &lt;/div&gt;</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &lt;div id=&quot;controls-hint&quot;&gt;WASD / Arrows to Move &bull; SPACE to Jump &bull; Mouse to Rotate Camera&lt;/div&gt;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &lt;div id=&quot;death-screen&quot;&gt;OUCH!&lt;/div&gt;</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &lt;!-- Touch Controls --&gt;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &lt;div id=&quot;joystick-zone&quot;&gt;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &lt;div id=&quot;joystick-knob&quot;&gt;&lt;/div&gt;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &lt;/div&gt;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &lt;div id=&quot;jump-button&quot;&gt;JUMP&lt;/div&gt;</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &lt;script&gt;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; // --- Game Constants &amp; State ---</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const GRAVITY = 25.0; </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const JUMP_FORCE = 15.0; </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const MOVE_SPEED = 18.0; </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const FRICTION = 4.0; </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; let gameState = {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; coins: 0,</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; stage: 1,</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; checkpoints: [], </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; currentCheckpoint: 0,</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; time: 0,</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; currentPlatform: null</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; };</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; // --- Three.js Setup ---</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const scene = new THREE.Scene();</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; scene.background = new THREE.Color(0x001e36);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; scene.fog = new THREE.Fog(0x001e36, 10, 80);</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const renderer = new THREE.WebGLRenderer({ antialias: true });</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; renderer.setSize(window.innerWidth, window.innerHeight);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; renderer.shadowMap.enabled = true;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; document.body.appendChild(renderer.domElement);</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; // --- Lighting ---</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const ambientLight = new THREE.AmbientLight(0x404040, 1.5);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; scene.add(ambientLight);</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const dirLight = new THREE.DirectionalLight(0x00aaff, 0.8);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; dirLight.position.set(50, 100, 50);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; dirLight.castShadow = true;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; dirLight.shadow.camera.left = -50;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; dirLight.shadow.camera.right = 50;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; dirLight.shadow.camera.top = 50;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; dirLight.shadow.camera.bottom = -50;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; dirLight.shadow.mapSize.width = 2048;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; dirLight.shadow.mapSize.height = 2048;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; scene.add(dirLight);</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const playerLight = new THREE.PointLight(0xffaa00, 0.8, 20); // Orange glow for Steve</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; scene.add(playerLight);</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; // --- Player Setup (Steve Fish Avatar) ---</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const player = new THREE.Group();</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; // 1. Body (Orange Round Shape)</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const bodyGeo = new THREE.SphereGeometry(0.5, 32, 32);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const bodyMat = new THREE.MeshStandardMaterial({ </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; color: 0xff8c00, // Dark Orange</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; roughness: 0.4,</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; metalness: 0.1</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; });</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const body = new THREE.Mesh(bodyGeo, bodyMat);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; // Scale to make it slightly fish-shaped (longer)</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; body.scale.set(1, 0.9, 1.2); </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; player.add(body);</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; // 2. Tail</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const tailGeo = new THREE.ConeGeometry(0.3, 0.6, 16);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const tailMat = new THREE.MeshStandardMaterial({ color: 0xff8c00 });</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const tail = new THREE.Mesh(tailGeo, tailMat);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; tail.rotation.x = -Math.PI / 2; // Point backwards</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; tail.position.z = -0.6;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; player.add(tail);</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; // 3. Eyes (Big and Goofy)</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const eyeGeo = new THREE.SphereGeometry(0.18, 16, 16);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const eyeMat = new THREE.MeshBasicMaterial({ color: 0xffffff });</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const pupilGeo = new THREE.SphereGeometry(0.08, 16, 16);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const pupilMat = new THREE.MeshBasicMaterial({ color: 0x000000 });</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; // Left Eye</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const leftEye = new THREE.Mesh(eyeGeo, eyeMat);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; leftEye.position.set(0.25, 0.1, 0.35);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const leftPupil = new THREE.Mesh(pupilGeo, pupilMat);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; leftPupil.position.set(0.28, 0.1, 0.48);</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; // Right Eye</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const rightEye = new THREE.Mesh(eyeGeo, eyeMat);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; rightEye.position.set(-0.25, 0.1, 0.35);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const rightPupil = new THREE.Mesh(pupilGeo, pupilMat);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; rightPupil.position.set(-0.28, 0.1, 0.48);</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; player.add(leftEye, rightEye, leftPupil, rightPupil);</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; // 4. Mouth (Frown)</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const mouthGeo = new THREE.TorusGeometry(0.1, 0.03, 8, 16, Math.PI); // Half circle</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const mouthMat = new THREE.MeshBasicMaterial({ color: 0x000000 });</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const mouth = new THREE.Mesh(mouthGeo, mouthMat);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; mouth.rotation.z = Math.PI ; // Frown</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; mouth.position.set(0, -0.15, 0.45);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; player.add(mouth);</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; // 5. Legs (It&#39;s a walking fish!)</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const legGeo = new THREE.CylinderGeometry(0.06, 0.06, 0.5, 8);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const legMat = new THREE.MeshStandardMaterial({ color: 0xffaa00 }); </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const leftLeg = new THREE.Mesh(legGeo, legMat);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; leftLeg.position.set(0.15, -0.6, 0);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const rightLeg = new THREE.Mesh(legGeo, legMat);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; rightLeg.position.set(-0.15, -0.6, 0);</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; // Feet</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const footGeo = new THREE.BoxGeometry(0.15, 0.05, 0.25);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const leftFoot = new THREE.Mesh(footGeo, legMat);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; leftFoot.position.set(0.15, -0.85, 0.05);</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const rightFoot = new THREE.Mesh(footGeo, legMat);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; rightFoot.position.set(-0.15, -0.85, 0.05);</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; player.add(leftLeg, rightLeg, leftFoot, rightFoot);</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; // 6. Arms</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const armGeo = new THREE.CylinderGeometry(0.05, 0.05, 0.4, 8);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const leftArm = new THREE.Mesh(armGeo, legMat);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; leftArm.position.set(0.5, -0.1, 0);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; leftArm.rotation.z = -Math.PI / 4; // Angle out</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const rightArm = new THREE.Mesh(armGeo, legMat);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; rightArm.position.set(-0.5, -0.1, 0);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; rightArm.rotation.z = Math.PI / 4;</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; player.add(leftArm, rightArm);</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; player.traverse(obj =&gt; { if (obj.isMesh) obj.castShadow = true; });</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; scene.add(player);</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; // --- Input State ---</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const playerVelocity = new THREE.Vector3(0, 0, 0);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const playerPosition = new THREE.Vector3(0, 5, 0);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; let isGrounded = false;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const keys = { w: false, a: false, s: false, d: false, space: false };</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; let joystickVector = { x: 0, y: 0 }; // x is left/right, y is up/down (forward/back)</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; let cameraAngle = 0;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; let isDragging = false;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; let previousMouseX = 0;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; let touchCameraId = null;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; let previousTouchX = 0;</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; // --- Keyboard Listeners ---</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; document.addEventListener(&#39;keydown&#39;, (e) =&gt; {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const key = e.key.toLowerCase();</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (keys.hasOwnProperty(key)) keys[key] = true;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (e.code === &#39;Space&#39;) keys.space = true;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (key === &#39;arrowup&#39;) keys.w = true;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (key === &#39;arrowdown&#39;) keys.s = true;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (key === &#39;arrowleft&#39;) keys.a = true;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (key === &#39;arrowright&#39;) keys.d = true;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; });</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; document.addEventListener(&#39;keyup&#39;, (e) =&gt; {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const key = e.key.toLowerCase();</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (keys.hasOwnProperty(key)) keys[key] = false;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (e.code === &#39;Space&#39;) keys.space = false;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (key === &#39;arrowup&#39;) keys.w = false;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (key === &#39;arrowdown&#39;) keys.s = false;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (key === &#39;arrowleft&#39;) keys.a = false;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (key === &#39;arrowright&#39;) keys.d = false;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; });</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; // --- Mouse Camera Control ---</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; document.addEventListener(&#39;mousedown&#39;, (e) =&gt; { isDragging = true; previousMouseX = e.clientX; });</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; document.addEventListener(&#39;mouseup&#39;, () =&gt; { isDragging = false; });</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; document.addEventListener(&#39;mousemove&#39;, (e) =&gt; {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (isDragging) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const delta = e.clientX - previousMouseX;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cameraAngle -= delta * 0.005;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; previousMouseX = e.clientX;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; });</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; // --- Touch Control Logic ---</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const joystickZone = document.getElementById(&#39;joystick-zone&#39;);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const joystickKnob = document.getElementById(&#39;joystick-knob&#39;);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const jumpBtn = document.getElementById(&#39;jump-button&#39;);</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; // Joystick</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; joystickZone.addEventListener(&#39;touchstart&#39;, (e) =&gt; {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; e.preventDefault();</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; handleJoystickMove(e.changedTouches[0]);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }, {passive: false});</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; joystickZone.addEventListener(&#39;touchmove&#39;, (e) =&gt; {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; e.preventDefault();</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; handleJoystickMove(e.changedTouches[0]);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }, {passive: false});</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; joystickZone.addEventListener(&#39;touchend&#39;, (e) =&gt; {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; e.preventDefault();</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; joystickVector = { x: 0, y: 0 };</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; joystickKnob.style.transform = `translate(-50%, -50%)`; // Reset knob</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }, {passive: false});</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; function handleJoystickMove(touch) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const rect = joystickZone.getBoundingClientRect();</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const centerX = rect.left + rect.width / 2;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const centerY = rect.top + rect.height / 2;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Calculate delta</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; let dx = touch.clientX - centerX;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; let dy = touch.clientY - centerY;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Limit knob distance</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const distance = Math.sqrt(dx*dx + dy*dy);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const maxRadius = rect.width / 2 - 25; // Zone radius minus knob radius</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (distance &gt; maxRadius) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const ratio = maxRadius / distance;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; dx *= ratio;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; dy *= ratio;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Move knob</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; joystickKnob.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px))`;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Normalize vector (-1 to 1)</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; joystickVector.x = dx / maxRadius;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; joystickVector.y = dy / maxRadius;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; // Jump Button</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; jumpBtn.addEventListener(&#39;touchstart&#39;, (e) =&gt; {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; e.preventDefault();</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; keys.space = true;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }, {passive: false});</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; jumpBtn.addEventListener(&#39;touchend&#39;, (e) =&gt; {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; e.preventDefault();</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; keys.space = false;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }, {passive: false});</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; // Touch Camera (Drag anywhere else)</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; document.addEventListener(&#39;touchstart&#39;, (e) =&gt; {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Find a touch that isn&#39;t on the controls</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; for (let i = 0; i &lt; e.changedTouches.length; i++) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const t = e.changedTouches[i];</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (t.target !== joystickZone &amp;&amp; t.target !== joystickKnob &amp;&amp; t.target !== jumpBtn) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; touchCameraId = t.identifier;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; previousTouchX = t.clientX;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; break;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }, {passive: false});</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; document.addEventListener(&#39;touchmove&#39;, (e) =&gt; {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; for (let i = 0; i &lt; e.changedTouches.length; i++) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const t = e.changedTouches[i];</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (t.identifier === touchCameraId) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const delta = t.clientX - previousTouchX;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cameraAngle -= delta * 0.008; // Sensitivity</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; previousTouchX = t.clientX;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; break;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }, {passive: false});</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; document.addEventListener(&#39;touchend&#39;, (e) =&gt; {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; for (let i = 0; i &lt; e.changedTouches.length; i++) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (e.changedTouches[i].identifier === touchCameraId) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; touchCameraId = null;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }, {passive: false});</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; // --- Level Building Functions ---</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const platforms = [];</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const hazards = [];</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const coins = [];</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const timedHazards = [];</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; const movingPlatforms = [];</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; function createPlatform(x, y, z, w, h, d, color, type = &#39;static&#39;) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const geo = new THREE.BoxGeometry(w, h, d);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const mat = new THREE.MeshStandardMaterial({ color: color, roughness: 0.8, transparent: true, opacity: 0.9 });</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const mesh = new THREE.Mesh(geo, mat);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; mesh.position.set(x, y, z);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; mesh.receiveShadow = true; mesh.castShadow = true;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; scene.add(mesh);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const collider = { mesh: mesh, width: w, height: h, depth: d, type: type };</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; platforms.push(collider);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if(type === &#39;moving&#39;) movingPlatforms.push({ ...collider, originalY: y, offset: Math.random() * Math.PI * 2 });</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return mesh;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; function createHazard(x, y, z, w, h, d, type = &#39;static&#39;) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const geo = new THREE.BoxGeometry(w, h, d);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const mat = new THREE.MeshStandardMaterial({ color: 0xff3300, emissive: 0xff0000, emissiveIntensity: 0.5 });</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const mesh = new THREE.Mesh(geo, mat);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; mesh.position.set(x, y, z);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; scene.add(mesh);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const hazard = { mesh: mesh, width: w, height: h, depth: d, active: true };</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; hazards.push(hazard);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (type === &#39;timed&#39;) timedHazards.push(hazard);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; function createCoin(x, y, z) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const geo = new THREE.TorusGeometry(0.3, 0.1, 8, 16);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const mat = new THREE.MeshStandardMaterial({ color: 0xffd700, metalness: 1, roughness: 0.2 });</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const mesh = new THREE.Mesh(geo, mat);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; mesh.position.set(x, y, z);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; scene.add(mesh);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; coins.push(mesh);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; function createCheckpoint(x, y, z, stageNum) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const geo = new THREE.CylinderGeometry(1, 1, 0.2, 16);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const mat = new THREE.MeshStandardMaterial({ color: 0x888888 });</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const mesh = new THREE.Mesh(geo, mat);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; mesh.position.set(x, y, z);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; scene.add(mesh);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; gameState.checkpoints.push({ pos: new THREE.Vector3(x, y + 2, z), stage: stageNum });</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; // --- Build Level ---</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; createPlatform(0, 0, 0, 10, 1, 10, 0xaaaaaa); </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; gameState.checkpoints.push({ pos: new THREE.Vector3(0, 5, 0), stage: 1 });</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; for (let i = 1; i &lt;= 5; i++) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; createPlatform(0, i * 2, i * -6.5, 4, 0.5, 6, 0x228b22); </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (i % 2 !== 0) createCoin(0, (i * 2) + 1.5, i * -6.5);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; createPlatform(0, 10, -40, 6, 0.5, 6, 0x32cd32, &#39;moving&#39;);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; createPlatform(0, 10, -50, 8, 1, 8, 0x888888);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; createCheckpoint(0, 10.5, -50, 2);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; createPlatform(-6, 12, -58, 4, 1, 4, 0x666666);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; createPlatform(6, 14, -66, 4, 1, 4, 0x666666);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; createPlatform(0, 13, -62, 15, 0.5, 2, 0x555555); </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; createHazard(0, 13.5, -62, 2, 0.5, 2); </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; createPlatform(0, 15, -72, 4, 1, 4, 0x666666);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; createPlatform(0, 15, -80, 4, 1, 4, 0x666666);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; createPlatform(0, 15, -88, 4, 1, 4, 0x666666);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; createHazard(0, 15, -76, 2, 4, 2, &#39;timed&#39;);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; createHazard(0, 15, -84, 2, 4, 2, &#39;timed&#39;);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; createCoin(0, 17, -80);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; createPlatform(0, 15, -100, 10, 1, 10, 0x333333);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; createCheckpoint(0, 15.5, -100, 3);</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; let angle = 0;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; let height = 15;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; for(let i = 0; i &lt; 10; i++) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; angle += 0.6; height += 2.0;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const x = Math.sin(angle) * 10;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const z = -100 + Math.cos(angle) * 10; </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; createPlatform(x, height, z, 4, 0.5, 4, 0x552200);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (i % 2 === 0) createHazard(x, height + 0.3, z, 1, 0.5, 1, &#39;timed&#39;);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; else createCoin(x, height + 1.5, z);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; createPlatform(0, height + 3, -100, 15, 1, 15, 0xffd700); </span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; // --- Game Logic ---</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; function updatePhysics(dt) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Sticky Logic</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (gameState.currentPlatform) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const p = gameState.currentPlatform;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const pMinX = p.mesh.position.x - p.width/2 - 0.6;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const pMaxX = p.mesh.position.x + p.width/2 + 0.6;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const pMinZ = p.mesh.position.z - p.depth/2 - 0.6;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const pMaxZ = p.mesh.position.z + p.depth/2 + 0.6;</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (playerPosition.x &gt;= pMinX &amp;&amp; playerPosition.x &lt;= pMaxX &amp;&amp;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; playerPosition.z &gt;= pMinZ &amp;&amp; playerPosition.z &lt;= pMaxZ) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (keys.space) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; playerVelocity.y = JUMP_FORCE;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; isGrounded = false;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; gameState.currentPlatform = null;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } else {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; isGrounded = true;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; playerVelocity.y = 0;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; playerPosition.y = p.mesh.position.y + p.height/2 + 0.5;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } else {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; isGrounded = false;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; gameState.currentPlatform = null;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } else {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (keys.space &amp;&amp; isGrounded) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;playerVelocity.y = JUMP_FORCE;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;isGrounded = false;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (!isGrounded) playerVelocity.y -= GRAVITY * dt;</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Movement Inputs (Mix Keyboard + Joystick)</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; let moveDir = new THREE.Vector3(0, 0, 0);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Keyboard</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (keys.w) moveDir.z -= 1;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (keys.s) moveDir.z += 1;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (keys.a) moveDir.x -= 1;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (keys.d) moveDir.x += 1;</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Joystick (Add to keyboard input)</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; moveDir.x += joystickVector.x;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; moveDir.z += joystickVector.y; // Y from 2D input maps to Z in 3D world</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (moveDir.length() &gt; 0) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Clamp length to 1 to prevent double speed if using both inputs</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if(moveDir.length() &gt; 1) moveDir.normalize();</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Rotate vector based on camera angle</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; moveDir.applyAxisAngle(new THREE.Vector3(0, 1, 0), cameraAngle);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; playerVelocity.x += moveDir.x * MOVE_SPEED * dt;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; playerVelocity.z += moveDir.z * MOVE_SPEED * dt;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Friction</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const dampFactor = Math.exp(-FRICTION * dt);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; playerVelocity.x *= dampFactor;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; playerVelocity.z *= dampFactor;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (playerVelocity.y &lt; -20) playerVelocity.y = -20;</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (Math.abs(playerVelocity.x) &gt; 0.1 || Math.abs(playerVelocity.z) &gt; 0.1) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const angle = Math.atan2(playerVelocity.x, playerVelocity.z);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; player.rotation.y = angle;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; let nextPos = playerPosition.clone();</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nextPos.x += playerVelocity.x * dt;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nextPos.z += playerVelocity.z * dt;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (!isGrounded) nextPos.y += playerVelocity.y * dt;</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Collision</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (!isGrounded &amp;&amp; playerVelocity.y &lt;= 0) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; for (let p of platforms) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; let pMinX = p.mesh.position.x - p.width/2 - 0.5;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; let pMaxX = p.mesh.position.x + p.width/2 + 0.5;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; let pMinY = p.mesh.position.y - p.height/2 - 0.5;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; let pMaxY = p.mesh.position.y + p.height/2 + 0.5;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; let pMinZ = p.mesh.position.z - p.depth/2 - 0.5;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; let pMaxZ = p.mesh.position.z + p.depth/2 + 0.5;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nextPos.x &gt; pMinX &amp;&amp; nextPos.x &lt; pMaxX &amp;&amp;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nextPos.z &gt; pMinZ &amp;&amp; nextPos.z &lt; pMaxZ &amp;&amp;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; playerPosition.y &gt;= pMaxY - 0.5 &amp;&amp; nextPos.y &lt;= pMaxY + 0.2</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nextPos.y = pMaxY + 0.5; </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; playerVelocity.y = 0;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; isGrounded = true;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; gameState.currentPlatform = p; </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; break; </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; hazards.forEach(h =&gt; {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (!h.active) return;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (Math.abs(h.mesh.position.x - nextPos.x) &lt; (h.width/2 + 0.4) &amp;&amp;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Math.abs(h.mesh.position.y - nextPos.y) &lt; (h.height/2 + 0.4) &amp;&amp;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Math.abs(h.mesh.position.z - nextPos.z) &lt; (h.depth/2 + 0.4)) die();</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; });</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; for (let i = coins.length - 1; i &gt;= 0; i--) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; let c = coins[i];</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (c.position.distanceTo(nextPos) &lt; 1.5) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; scene.remove(c);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; coins.splice(i, 1);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; gameState.coins++;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; document.getElementById(&#39;coin-display&#39;).innerText = gameState.coins;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; gameState.checkpoints.forEach(cp =&gt; {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (cp.pos.distanceTo(nextPos) &lt; 3) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (gameState.stage &lt; cp.stage) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; gameState.stage = cp.stage;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; gameState.currentCheckpoint = gameState.stage - 1;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; document.getElementById(&#39;stage-display&#39;).innerText = gameState.stage;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; });</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (nextPos.y &lt; -20) { die(); return; }</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; playerPosition.copy(nextPos);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; player.position.copy(playerPosition);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; function die() {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const deathScreen = document.getElementById(&#39;death-screen&#39;);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; deathScreen.style.display = &#39;flex&#39;;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const cp = gameState.checkpoints[gameState.currentCheckpoint].pos;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; playerPosition.set(cp.x, cp.y + 2, cp.z);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; playerVelocity.set(0, 0, 0);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; gameState.currentPlatform = null; </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; setTimeout(() =&gt; { deathScreen.style.display = &#39;none&#39;; }, 1000);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; function updateEnvironment(time) {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; coins.forEach(c =&gt; { c.rotation.y += 0.05; });</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; movingPlatforms.forEach(p =&gt; { p.mesh.position.y = p.originalY + Math.sin(time * 2 + p.offset) * 2; });</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const cycle = Math.floor(time / 2);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; timedHazards.forEach((h, index) =&gt; {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const isOn = (cycle + index) % 2 === 0;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; h.active = isOn;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; h.mesh.material.opacity = isOn ? 1 : 0.2;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; h.mesh.material.transparent = true;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; h.mesh.material.emissiveIntensity = isOn ? 1 : 0.1;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; });</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; function updateCamera() {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const dist = 10;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const camX = playerPosition.x + Math.sin(cameraAngle) * dist;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const camZ = playerPosition.z + Math.cos(cameraAngle) * dist;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const camY = playerPosition.y + 5;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; camera.position.set(camX, camY, camZ);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; camera.lookAt(playerPosition);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; playerLight.position.copy(playerPosition);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; let lastTime = performance.now();</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; function animate() {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; requestAnimationFrame(animate);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const now = performance.now();</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const dt = Math.min((now - lastTime) / 1000, 0.1); </span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; lastTime = now;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; gameState.time = now / 1000;</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; updatePhysics(dt);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; updateEnvironment(gameState.time);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; updateCamera();</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; renderer.render(scene, camera);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; gameState.checkpoints[0].pos.copy(new THREE.Vector3(0, 5, 0));</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; animate();</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; window.addEventListener(&#39;resize&#39;, () =&gt; {</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; camera.aspect = window.innerWidth / window.innerHeight;</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; camera.updateProjectionMatrix();</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; renderer.setSize(window.innerWidth, window.innerHeight);</span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &nbsp; &nbsp; });</span></p><p class="c0 c2"><span class="c1"></span></p><p class="c0"><span class="c1">&nbsp; &nbsp; &lt;/script&gt;</span></p><p class="c0"><span class="c1">&lt;/body&gt;</span></p><p class="c0"><span class="c1">&lt;/html&gt;</span></p><p class="c0 c2"><span class="c1"></span></p></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Aquatic Fire Obby - Prototype</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #001133; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; touch-action: none; user-select: none; -webkit-user-select: none; }
+        #ui-layer {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            pointer-events: none;
+            text-shadow: 2px 2px 4px #000000;
+            z-index: 10;
+        }
+        h1 { margin: 0; font-size: 24px; color: #00eeff; }
+        .stat-box {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border: 1px solid #005577;
+        }
+        #controls-hint {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            pointer-events: none;
+        }
+        #death-screen {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(100, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        /* --- Touch Controls --- */
+        #joystick-zone {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            touch-action: none;
+            display: none; /* Hidden on desktop by default */
+            z-index: 15;
+        }
+        #joystick-knob {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 238, 255, 0.6);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            box-shadow: 0 0 10px rgba(0, 238, 255, 0.5);
+        }
+        #jump-button {
+            position: absolute;
+            bottom: 50px;
+            right: 50px;
+            width: 90px;
+            height: 90px;
+            background: rgba(255, 68, 68, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            color: white;
+            display: none; /* Hidden on desktop by default */
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 18px;
+            user-select: none;
+            touch-action: none;
+            z-index: 15;
+            box-shadow: 0 0 10px rgba(255, 68, 68, 0.5);
+        }
+        #jump-button:active {
+            background: rgba(255, 68, 68, 0.8);
+            transform: scale(0.95);
+        }
+
+        /* Show controls on touch devices */
+        @media (pointer: coarse) {
+            #joystick-zone, #jump-button { display: flex; }
+            #controls-hint { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="ui-layer">
+        <h1>Aquatic Fire Obby</h1>
+        <div class="stat-box">
+            <div>Stage: <span id="stage-display">1</span></div>
+            <div>Coins: <span id="coin-display">0</span></div>
+        </div>
+    </div>
+
+    <div id="controls-hint">WASD / Arrows to Move • SPACE to Jump • Mouse to Rotate Camera</div>
+    <div id="death-screen">OUCH!</div>
+
+    <!-- Touch Controls -->
+    <div id="joystick-zone">
+        <div id="joystick-knob"></div>
+    </div>
+    <div id="jump-button">JUMP</div>
+
+    <script>
+        // --- Game Constants & State ---
+        const GRAVITY = 25.0; 
+        const JUMP_FORCE = 15.0; 
+        const MOVE_SPEED = 18.0; 
+        const FRICTION = 4.0; 
+        
+        let gameState = {
+            coins: 0,
+            stage: 1,
+            checkpoints: [], 
+            currentCheckpoint: 0,
+            time: 0,
+            currentPlatform: null
+        };
+
+        // --- Three.js Setup ---
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x001e36);
+        scene.fog = new THREE.Fog(0x001e36, 10, 80);
+
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true;
+        document.body.appendChild(renderer.domElement);
+
+        // --- Lighting ---
+        const ambientLight = new THREE.AmbientLight(0x404040, 1.5);
+        scene.add(ambientLight);
+
+        const dirLight = new THREE.DirectionalLight(0x00aaff, 0.8);
+        dirLight.position.set(50, 100, 50);
+        dirLight.castShadow = true;
+        dirLight.shadow.camera.left = -50;
+        dirLight.shadow.camera.right = 50;
+        dirLight.shadow.camera.top = 50;
+        dirLight.shadow.camera.bottom = -50;
+        dirLight.shadow.mapSize.width = 2048;
+        dirLight.shadow.mapSize.height = 2048;
+        scene.add(dirLight);
+
+        const playerLight = new THREE.PointLight(0xffaa00, 0.8, 20); // Orange glow for Steve
+        scene.add(playerLight);
+
+        // --- Player Setup (Steve Fish Avatar) ---
+        const player = new THREE.Group();
+
+        // 1. Body (Orange Round Shape)
+        const bodyGeo = new THREE.SphereGeometry(0.5, 32, 32);
+        const bodyMat = new THREE.MeshStandardMaterial({ 
+            color: 0xff8c00, // Dark Orange
+            roughness: 0.4,
+            metalness: 0.1
+        });
+        const body = new THREE.Mesh(bodyGeo, bodyMat);
+        // Scale to make it slightly fish-shaped (longer)
+        body.scale.set(1, 0.9, 1.2); 
+        player.add(body);
+
+        // 2. Tail
+        const tailGeo = new THREE.ConeGeometry(0.3, 0.6, 16);
+        const tailMat = new THREE.MeshStandardMaterial({ color: 0xff8c00 });
+        const tail = new THREE.Mesh(tailGeo, tailMat);
+        tail.rotation.x = -Math.PI / 2; // Point backwards
+        tail.position.z = -0.6;
+        player.add(tail);
+
+        // 3. Eyes (Big and Goofy)
+        const eyeGeo = new THREE.SphereGeometry(0.18, 16, 16);
+        const eyeMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+        const pupilGeo = new THREE.SphereGeometry(0.08, 16, 16);
+        const pupilMat = new THREE.MeshBasicMaterial({ color: 0x000000 });
+
+        // Left Eye
+        const leftEye = new THREE.Mesh(eyeGeo, eyeMat);
+        leftEye.position.set(0.25, 0.1, 0.35);
+        const leftPupil = new THREE.Mesh(pupilGeo, pupilMat);
+        leftPupil.position.set(0.28, 0.1, 0.48);
+
+        // Right Eye
+        const rightEye = new THREE.Mesh(eyeGeo, eyeMat);
+        rightEye.position.set(-0.25, 0.1, 0.35);
+        const rightPupil = new THREE.Mesh(pupilGeo, pupilMat);
+        rightPupil.position.set(-0.28, 0.1, 0.48);
+
+        player.add(leftEye, rightEye, leftPupil, rightPupil);
+
+        // 4. Mouth (Frown)
+        const mouthGeo = new THREE.TorusGeometry(0.1, 0.03, 8, 16, Math.PI); // Half circle
+        const mouthMat = new THREE.MeshBasicMaterial({ color: 0x000000 });
+        const mouth = new THREE.Mesh(mouthGeo, mouthMat);
+        mouth.rotation.z = Math.PI ; // Frown
+        mouth.position.set(0, -0.15, 0.45);
+        player.add(mouth);
+
+        // 5. Legs (It's a walking fish!)
+        const legGeo = new THREE.CylinderGeometry(0.06, 0.06, 0.5, 8);
+        const legMat = new THREE.MeshStandardMaterial({ color: 0xffaa00 }); 
+        
+        const leftLeg = new THREE.Mesh(legGeo, legMat);
+        leftLeg.position.set(0.15, -0.6, 0);
+        
+        const rightLeg = new THREE.Mesh(legGeo, legMat);
+        rightLeg.position.set(-0.15, -0.6, 0);
+
+        // Feet
+        const footGeo = new THREE.BoxGeometry(0.15, 0.05, 0.25);
+        const leftFoot = new THREE.Mesh(footGeo, legMat);
+        leftFoot.position.set(0.15, -0.85, 0.05);
+
+        const rightFoot = new THREE.Mesh(footGeo, legMat);
+        rightFoot.position.set(-0.15, -0.85, 0.05);
+
+        player.add(leftLeg, rightLeg, leftFoot, rightFoot);
+
+        // 6. Arms
+        const armGeo = new THREE.CylinderGeometry(0.05, 0.05, 0.4, 8);
+        const leftArm = new THREE.Mesh(armGeo, legMat);
+        leftArm.position.set(0.5, -0.1, 0);
+        leftArm.rotation.z = -Math.PI / 4; // Angle out
+
+        const rightArm = new THREE.Mesh(armGeo, legMat);
+        rightArm.position.set(-0.5, -0.1, 0);
+        rightArm.rotation.z = Math.PI / 4;
+
+        player.add(leftArm, rightArm);
+
+        player.traverse(obj => { if (obj.isMesh) obj.castShadow = true; });
+        scene.add(player);
+
+        // --- Input State ---
+        const playerVelocity = new THREE.Vector3(0, 0, 0);
+        const playerPosition = new THREE.Vector3(0, 5, 0);
+        let isGrounded = false;
+        
+        const keys = { w: false, a: false, s: false, d: false, space: false };
+        let joystickVector = { x: 0, y: 0 }; // x is left/right, y is up/down (forward/back)
+        let cameraAngle = 0;
+        let isDragging = false;
+        let previousMouseX = 0;
+        let touchCameraId = null;
+        let previousTouchX = 0;
+
+        // --- Keyboard Listeners ---
+        document.addEventListener('keydown', (e) => {
+            const key = e.key.toLowerCase();
+            if (keys.hasOwnProperty(key)) keys[key] = true;
+            if (e.code === 'Space') keys.space = true;
+            if (key === 'arrowup') keys.w = true;
+            if (key === 'arrowdown') keys.s = true;
+            if (key === 'arrowleft') keys.a = true;
+            if (key === 'arrowright') keys.d = true;
+        });
+
+        document.addEventListener('keyup', (e) => {
+            const key = e.key.toLowerCase();
+            if (keys.hasOwnProperty(key)) keys[key] = false;
+            if (e.code === 'Space') keys.space = false;
+            if (key === 'arrowup') keys.w = false;
+            if (key === 'arrowdown') keys.s = false;
+            if (key === 'arrowleft') keys.a = false;
+            if (key === 'arrowright') keys.d = false;
+        });
+
+        // --- Mouse Camera Control ---
+        document.addEventListener('mousedown', (e) => { isDragging = true; previousMouseX = e.clientX; });
+        document.addEventListener('mouseup', () => { isDragging = false; });
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                const delta = e.clientX - previousMouseX;
+                cameraAngle -= delta * 0.005;
+                previousMouseX = e.clientX;
+            }
+        });
+
+        // --- Touch Control Logic ---
+        const joystickZone = document.getElementById('joystick-zone');
+        const joystickKnob = document.getElementById('joystick-knob');
+        const jumpBtn = document.getElementById('jump-button');
+
+        // Joystick
+        joystickZone.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            handleJoystickMove(e.changedTouches[0]);
+        }, {passive: false});
+
+        joystickZone.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            handleJoystickMove(e.changedTouches[0]);
+        }, {passive: false});
+
+        joystickZone.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            joystickVector = { x: 0, y: 0 };
+            joystickKnob.style.transform = `translate(-50%, -50%)`; // Reset knob
+        }, {passive: false});
+
+        function handleJoystickMove(touch) {
+            const rect = joystickZone.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            // Calculate delta
+            let dx = touch.clientX - centerX;
+            let dy = touch.clientY - centerY;
+            
+            // Limit knob distance
+            const distance = Math.sqrt(dx*dx + dy*dy);
+            const maxRadius = rect.width / 2 - 25; // Zone radius minus knob radius
+            
+            if (distance > maxRadius) {
+                const ratio = maxRadius / distance;
+                dx *= ratio;
+                dy *= ratio;
+            }
+            
+            // Move knob
+            joystickKnob.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px))`;
+            
+            // Normalize vector (-1 to 1)
+            joystickVector.x = dx / maxRadius;
+            joystickVector.y = dy / maxRadius;
+        }
+
+        // Jump Button
+        jumpBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            keys.space = true;
+        }, {passive: false});
+
+        jumpBtn.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            keys.space = false;
+        }, {passive: false});
+
+        // Touch Camera (Drag anywhere else)
+        document.addEventListener('touchstart', (e) => {
+            // Find a touch that isn't on the controls
+            for (let i = 0; i < e.changedTouches.length; i++) {
+                const t = e.changedTouches[i];
+                if (t.target !== joystickZone && t.target !== joystickKnob && t.target !== jumpBtn) {
+                    touchCameraId = t.identifier;
+                    previousTouchX = t.clientX;
+                    break;
+                }
+            }
+        }, {passive: false});
+
+        document.addEventListener('touchmove', (e) => {
+            for (let i = 0; i < e.changedTouches.length; i++) {
+                const t = e.changedTouches[i];
+                if (t.identifier === touchCameraId) {
+                    const delta = t.clientX - previousTouchX;
+                    cameraAngle -= delta * 0.008; // Sensitivity
+                    previousTouchX = t.clientX;
+                    break;
+                }
+            }
+        }, {passive: false});
+
+        document.addEventListener('touchend', (e) => {
+            for (let i = 0; i < e.changedTouches.length; i++) {
+                if (e.changedTouches[i].identifier === touchCameraId) {
+                    touchCameraId = null;
+                }
+            }
+        }, {passive: false});
+
+
+        // --- Level Building Functions ---
+        const platforms = [];
+        const hazards = [];
+        const coins = [];
+        const timedHazards = [];
+        const movingPlatforms = [];
+
+        function createPlatform(x, y, z, w, h, d, color, type = 'static') {
+            const geo = new THREE.BoxGeometry(w, h, d);
+            const mat = new THREE.MeshStandardMaterial({ color: color, roughness: 0.8, transparent: true, opacity: 0.9 });
+            const mesh = new THREE.Mesh(geo, mat);
+            mesh.position.set(x, y, z);
+            mesh.receiveShadow = true; mesh.castShadow = true;
+            scene.add(mesh);
+            const collider = { mesh: mesh, width: w, height: h, depth: d, type: type };
+            platforms.push(collider);
+            if(type === 'moving') movingPlatforms.push({ ...collider, originalY: y, offset: Math.random() * Math.PI * 2 });
+            return mesh;
+        }
+
+        function createHazard(x, y, z, w, h, d, type = 'static') {
+            const geo = new THREE.BoxGeometry(w, h, d);
+            const mat = new THREE.MeshStandardMaterial({ color: 0xff3300, emissive: 0xff0000, emissiveIntensity: 0.5 });
+            const mesh = new THREE.Mesh(geo, mat);
+            mesh.position.set(x, y, z);
+            scene.add(mesh);
+            const hazard = { mesh: mesh, width: w, height: h, depth: d, active: true };
+            hazards.push(hazard);
+            if (type === 'timed') timedHazards.push(hazard);
+        }
+
+        function createCoin(x, y, z) {
+            const geo = new THREE.TorusGeometry(0.3, 0.1, 8, 16);
+            const mat = new THREE.MeshStandardMaterial({ color: 0xffd700, metalness: 1, roughness: 0.2 });
+            const mesh = new THREE.Mesh(geo, mat);
+            mesh.position.set(x, y, z);
+            scene.add(mesh);
+            coins.push(mesh);
+        }
+
+        function createCheckpoint(x, y, z, stageNum) {
+            const geo = new THREE.CylinderGeometry(1, 1, 0.2, 16);
+            const mat = new THREE.MeshStandardMaterial({ color: 0x888888 });
+            const mesh = new THREE.Mesh(geo, mat);
+            mesh.position.set(x, y, z);
+            scene.add(mesh);
+            gameState.checkpoints.push({ pos: new THREE.Vector3(x, y + 2, z), stage: stageNum });
+        }
+
+        // --- Build Level ---
+        createPlatform(0, 0, 0, 10, 1, 10, 0xaaaaaa); 
+        gameState.checkpoints.push({ pos: new THREE.Vector3(0, 5, 0), stage: 1 });
+
+        for (let i = 1; i <= 5; i++) {
+            createPlatform(0, i * 2, i * -6.5, 4, 0.5, 6, 0x228b22); 
+            if (i % 2 !== 0) createCoin(0, (i * 2) + 1.5, i * -6.5);
+        }
+
+        createPlatform(0, 10, -40, 6, 0.5, 6, 0x32cd32, 'moving');
+        createPlatform(0, 10, -50, 8, 1, 8, 0x888888);
+        createCheckpoint(0, 10.5, -50, 2);
+        createPlatform(-6, 12, -58, 4, 1, 4, 0x666666);
+        createPlatform(6, 14, -66, 4, 1, 4, 0x666666);
+        createPlatform(0, 13, -62, 15, 0.5, 2, 0x555555); 
+        createHazard(0, 13.5, -62, 2, 0.5, 2); 
+        createPlatform(0, 15, -72, 4, 1, 4, 0x666666);
+        createPlatform(0, 15, -80, 4, 1, 4, 0x666666);
+        createPlatform(0, 15, -88, 4, 1, 4, 0x666666);
+        createHazard(0, 15, -76, 2, 4, 2, 'timed');
+        createHazard(0, 15, -84, 2, 4, 2, 'timed');
+        createCoin(0, 17, -80);
+        createPlatform(0, 15, -100, 10, 1, 10, 0x333333);
+        createCheckpoint(0, 15.5, -100, 3);
+
+        let angle = 0;
+        let height = 15;
+        for(let i = 0; i < 10; i++) {
+            angle += 0.6; height += 2.0;
+            const x = Math.sin(angle) * 10;
+            const z = -100 + Math.cos(angle) * 10; 
+            createPlatform(x, height, z, 4, 0.5, 4, 0x552200);
+            if (i % 2 === 0) createHazard(x, height + 0.3, z, 1, 0.5, 1, 'timed');
+            else createCoin(x, height + 1.5, z);
+        }
+        createPlatform(0, height + 3, -100, 15, 1, 15, 0xffd700); 
+
+        // --- Game Logic ---
+        function updatePhysics(dt) {
+            // Sticky Logic
+            if (gameState.currentPlatform) {
+                const p = gameState.currentPlatform;
+                const pMinX = p.mesh.position.x - p.width/2 - 0.6;
+                const pMaxX = p.mesh.position.x + p.width/2 + 0.6;
+                const pMinZ = p.mesh.position.z - p.depth/2 - 0.6;
+                const pMaxZ = p.mesh.position.z + p.depth/2 + 0.6;
+
+                if (playerPosition.x >= pMinX && playerPosition.x <= pMaxX &&
+                    playerPosition.z >= pMinZ && playerPosition.z <= pMaxZ) {
+                    if (keys.space) {
+                        playerVelocity.y = JUMP_FORCE;
+                        isGrounded = false;
+                        gameState.currentPlatform = null;
+                    } else {
+                        isGrounded = true;
+                        playerVelocity.y = 0;
+                        playerPosition.y = p.mesh.position.y + p.height/2 + 0.5;
+                    }
+                } else {
+                    isGrounded = false;
+                    gameState.currentPlatform = null;
+                }
+            } else {
+                if (keys.space && isGrounded) {
+                     playerVelocity.y = JUMP_FORCE;
+                     isGrounded = false;
+                }
+            }
+
+            if (!isGrounded) playerVelocity.y -= GRAVITY * dt;
+
+            // Movement Inputs (Mix Keyboard + Joystick)
+            let moveDir = new THREE.Vector3(0, 0, 0);
+            
+            // Keyboard
+            if (keys.w) moveDir.z -= 1;
+            if (keys.s) moveDir.z += 1;
+            if (keys.a) moveDir.x -= 1;
+            if (keys.d) moveDir.x += 1;
+
+            // Joystick (Add to keyboard input)
+            moveDir.x += joystickVector.x;
+            moveDir.z += joystickVector.y; // Y from 2D input maps to Z in 3D world
+
+            if (moveDir.length() > 0) {
+                // Clamp length to 1 to prevent double speed if using both inputs
+                if(moveDir.length() > 1) moveDir.normalize();
+                
+                // Rotate vector based on camera angle
+                moveDir.applyAxisAngle(new THREE.Vector3(0, 1, 0), cameraAngle);
+                
+                playerVelocity.x += moveDir.x * MOVE_SPEED * dt;
+                playerVelocity.z += moveDir.z * MOVE_SPEED * dt;
+            }
+
+            // Friction
+            const dampFactor = Math.exp(-FRICTION * dt);
+            playerVelocity.x *= dampFactor;
+            playerVelocity.z *= dampFactor;
+            
+            if (playerVelocity.y < -20) playerVelocity.y = -20;
+
+            if (Math.abs(playerVelocity.x) > 0.1 || Math.abs(playerVelocity.z) > 0.1) {
+                const angle = Math.atan2(playerVelocity.x, playerVelocity.z);
+                player.rotation.y = angle;
+            }
+
+            let nextPos = playerPosition.clone();
+            nextPos.x += playerVelocity.x * dt;
+            nextPos.z += playerVelocity.z * dt;
+            if (!isGrounded) nextPos.y += playerVelocity.y * dt;
+
+            // Collision
+            if (!isGrounded && playerVelocity.y <= 0) {
+                for (let p of platforms) {
+                    let pMinX = p.mesh.position.x - p.width/2 - 0.5;
+                    let pMaxX = p.mesh.position.x + p.width/2 + 0.5;
+                    let pMinY = p.mesh.position.y - p.height/2 - 0.5;
+                    let pMaxY = p.mesh.position.y + p.height/2 + 0.5;
+                    let pMinZ = p.mesh.position.z - p.depth/2 - 0.5;
+                    let pMaxZ = p.mesh.position.z + p.depth/2 + 0.5;
+                    if (
+                        nextPos.x > pMinX && nextPos.x < pMaxX &&
+                        nextPos.z > pMinZ && nextPos.z < pMaxZ &&
+                        playerPosition.y >= pMaxY - 0.5 && nextPos.y <= pMaxY + 0.2
+                    ) {
+                        nextPos.y = pMaxY + 0.5; 
+                        playerVelocity.y = 0;
+                        isGrounded = true;
+                        gameState.currentPlatform = p; 
+                        break; 
+                    }
+                }
+            }
+
+            hazards.forEach(h => {
+                if (!h.active) return;
+                if (Math.abs(h.mesh.position.x - nextPos.x) < (h.width/2 + 0.4) &&
+                    Math.abs(h.mesh.position.y - nextPos.y) < (h.height/2 + 0.4) &&
+                    Math.abs(h.mesh.position.z - nextPos.z) < (h.depth/2 + 0.4)) die();
+            });
+
+            for (let i = coins.length - 1; i >= 0; i--) {
+                let c = coins[i];
+                if (c.position.distanceTo(nextPos) < 1.5) {
+                    scene.remove(c);
+                    coins.splice(i, 1);
+                    gameState.coins++;
+                    document.getElementById('coin-display').innerText = gameState.coins;
+                }
+            }
+
+            gameState.checkpoints.forEach(cp => {
+                if (cp.pos.distanceTo(nextPos) < 3) {
+                    if (gameState.stage < cp.stage) {
+                        gameState.stage = cp.stage;
+                        gameState.currentCheckpoint = gameState.stage - 1;
+                        document.getElementById('stage-display').innerText = gameState.stage;
+                    }
+                }
+            });
+
+            if (nextPos.y < -20) { die(); return; }
+
+            playerPosition.copy(nextPos);
+            player.position.copy(playerPosition);
+        }
+
+        function die() {
+            const deathScreen = document.getElementById('death-screen');
+            deathScreen.style.display = 'flex';
+            const cp = gameState.checkpoints[gameState.currentCheckpoint].pos;
+            playerPosition.set(cp.x, cp.y + 2, cp.z);
+            playerVelocity.set(0, 0, 0);
+            gameState.currentPlatform = null; 
+            setTimeout(() => { deathScreen.style.display = 'none'; }, 1000);
+        }
+
+        function updateEnvironment(time) {
+            coins.forEach(c => { c.rotation.y += 0.05; });
+            movingPlatforms.forEach(p => { p.mesh.position.y = p.originalY + Math.sin(time * 2 + p.offset) * 2; });
+            const cycle = Math.floor(time / 2);
+            timedHazards.forEach((h, index) => {
+                const isOn = (cycle + index) % 2 === 0;
+                h.active = isOn;
+                h.mesh.material.opacity = isOn ? 1 : 0.2;
+                h.mesh.material.transparent = true;
+                h.mesh.material.emissiveIntensity = isOn ? 1 : 0.1;
+            });
+        }
+
+        function updateCamera() {
+            const dist = 10;
+            const camX = playerPosition.x + Math.sin(cameraAngle) * dist;
+            const camZ = playerPosition.z + Math.cos(cameraAngle) * dist;
+            const camY = playerPosition.y + 5;
+            camera.position.set(camX, camY, camZ);
+            camera.lookAt(playerPosition);
+            playerLight.position.copy(playerPosition);
+        }
+
+        let lastTime = performance.now();
+        function animate() {
+            requestAnimationFrame(animate);
+            const now = performance.now();
+            const dt = Math.min((now - lastTime) / 1000, 0.1); 
+            lastTime = now;
+            gameState.time = now / 1000;
+
+            updatePhysics(dt);
+            updateEnvironment(gameState.time);
+            updateCamera();
+
+            renderer.render(scene, camera);
+        }
+
+        gameState.checkpoints[0].pos.copy(new THREE.Vector3(0, 5, 0));
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+    </script>
+</body>
+</html>
